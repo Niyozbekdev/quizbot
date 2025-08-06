@@ -1,0 +1,13 @@
+{
+  "name": "quizbot-fullstack",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd web && npm install && npm run build",
+    "start": "cd server && npm install && npm start",
+    "dev:web": "cd web && npm run dev",
+    "dev:server": "cd server && npm start",
+    "install:all": "npm install && cd web && npm install && cd ../server && npm install"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
