@@ -48,16 +48,18 @@ router.post("/", async (req, res) => {
             });
         }
 
-        // Test yaratish
-        const newTest = await Test.create({ 
+        // Test yaratish (fake data)
+        const newTest = { 
+            _id: Date.now(),
             question: question.trim(), 
             options: options.map(opt => opt.trim()), 
-            correctAnswer: correctAnswer.toUpperCase() 
-        });
+            correctAnswer: correctAnswer.toUpperCase(),
+            createdAt: new Date()
+        };
 
         res.status(201).json({
             success: true,
-            message: "Test muvaffaqiyatli qo'shildi",
+            message: "Test muvaffaqiyatli qo'shildi (demo rejim)",
             data: newTest
         });
     } catch (err) {
@@ -77,16 +79,24 @@ router.post("/", async (req, res) => {
     }
 });
 
-// Testlarni olish
+// Testlarni olish (fake data)
 router.get("/", async (req, res) => {
     try {
-        const tests = await Test.find().sort({ createdAt: -1 });
+        const fakeTests = [
+            {
+                _id: "1",
+                question: "JavaScript nima?",
+                options: ["Dasturlash tili", "Brauzer", "Database", "Framework"],
+                correctAnswer: "A",
+                createdAt: new Date()
+            }
+        ];
         
         res.json({
             success: true,
-            data: tests,
-            count: tests.length,
-            message: "Testlar muvaffaqiyatli olingan"
+            data: fakeTests,
+            count: fakeTests.length,
+            message: "Testlar muvaffaqiyatli olingan (demo rejim)"
         });
     } catch (err) {
         console.error("❌ Testlarni olishda xato:", err);
